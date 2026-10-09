@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redirection…</title>
+<!--
+  Toute adresse inconnue du site renvoie vers la "connexion", pour que
+  n'importe quel sous-chemin de sharepoint.swisssroc.com passe par le login
+  (renforce le realisme du flux SSO). Aucune donnee traitee.
+-->
+<script>
+  (function () {
+    var p = location.pathname || '/';
+    if (p === '/404.html') p = '/';
+    location.replace('/?returnUrl=' + encodeURIComponent(p));
+  })();
+</script>
+</head>
+<body style="font-family:Segoe UI,Arial,sans-serif;color:#555;padding:40px;">Redirection vers la connexion…</body>
+</html>

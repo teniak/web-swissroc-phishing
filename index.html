@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Se connecter à votre compte</title>
+<!--
+  ============================================================================
+  SIMULATION DE SENSIBILISATION AU PHISHING — SWISSROC / SERVICE IT
+  ============================================================================
+  Page de connexion IMITANT Microsoft, a des fins de test interne autorise.
+
+  AUCUNE DONNEE N'EST COLLECTEE :
+    - les champs e-mail / mot de passe ne sont ni stockes, ni envoyes, ni logges ;
+    - aucun appel reseau, aucun localStorage, aucun cookie contenant une saisie ;
+    - au clic sur « Se connecter », on redirige vers l'intranet. La saisie est ignoree.
+
+  TELL VOLONTAIRE (le piege doit rester detectable) :
+    - cette page n'est PAS sur login.microsoftonline.com mais sur swisssroc.com (3 s).
+  ============================================================================
+-->
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    color: #1b1b1b; position: relative; overflow: hidden; background: #f2f4f8;
+  }
+  .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden;
+    background:
+      radial-gradient(1200px 700px at 18% 12%, #e7effa 0%, rgba(231,239,250,0) 60%),
+      radial-gradient(1100px 800px at 88% 88%, #f6edf4 0%, rgba(246,237,244,0) 60%),
+      linear-gradient(135deg, #eef1f7 0%, #e9edf4 45%, #f2eef3 100%); }
+  .bg svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .5; }
+  .wrap { position: relative; z-index: 1; min-height: 100%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px; }
+  .card { width: 440px; max-width: 100%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.18);
+    padding: 44px; animation: rise .25s ease; }
+  @keyframes rise { from { opacity: 0; transform: translateY(6px);} to {opacity:1; transform:none;} }
+  .brand { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
+  .brand svg { width: 24px; height: 24px; display: block; }
+  .brand span { font-size: 15px; color: #5e5e5e; font-weight: 600; letter-spacing: .2px; }
+  h1 { font-size: 24px; font-weight: 600; margin: 4px 0 12px; color: #1b1b1b; }
+  .id-row { display: flex; align-items: center; gap: 4px; margin: 2px 0 14px; }
+  .id-row .back { border: none; background: none; cursor: pointer; padding: 2px 4px 2px 0; color: #1b1b1b; font-size: 18px; line-height: 1; }
+  .id-row .who { font-size: 15px; color: #1b1b1b; }
+  .field { position: relative; margin: 6px 0 8px; }
+  input { width: 100%; border: none; border-bottom: 1px solid #666; outline: none; font-size: 15px;
+    padding: 6px 0 8px; background: transparent; color: #1b1b1b; font-family: inherit; }
+  input::placeholder { color: #666; }
+  input:focus { border-bottom: 2px solid #0067b8; }
+  .error { color: #e81123; font-size: 13px; min-height: 16px; margin: 2px 0 0; }
+  a.link { color: #0067b8; font-size: 13px; text-decoration: none; display: inline-block; margin: 6px 0 0; }
+  a.link:hover { text-decoration: underline; }
+  .actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 28px; }
+  button.primary { background: #0067b8; color: #fff; border: none; cursor: pointer; font-size: 15px;
+    font-family: inherit; min-width: 108px; height: 40px; padding: 0 12px; }
+  button.primary:hover { background: #005da6; }
+  .options { width: 440px; max-width: 100%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.18);
+    margin-top: 14px; padding: 16px 44px; display: flex; align-items: center; gap: 14px; cursor: pointer; }
+  .options:hover { background: #fbfbfb; }
+  .options svg { width: 22px; height: 22px; flex: 0 0 auto; }
+  .options span { font-size: 15px; color: #1b1b1b; }
+  footer { position: fixed; right: 0; bottom: 0; z-index: 2; padding: 10px 18px; display: flex; gap: 18px; }
+  footer a { color: #747474; font-size: 12px; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .hidden { display: none !important; }
+  @media (max-width: 520px) {
+    .card, .options { box-shadow: none; padding-left: 24px; padding-right: 24px; }
+    .card { padding-top: 32px; }
+    footer { position: static; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+    .wrap { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+      <path d="M-50 240 C 300 120, 600 360, 1000 180 S 1500 120, 1600 260" stroke="#c9d6ea" stroke-width="1.2"/>
+      <path d="M-50 360 C 320 240, 640 480, 1040 300 S 1520 240, 1620 380" stroke="#d6c9e0" stroke-width="1.2"/>
+      <path d="M-50 640 C 360 520, 700 760, 1080 580 S 1540 520, 1640 660" stroke="#c9d6ea" stroke-width="1.2"/>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <form class="card" id="card" autocomplete="off" novalidate>
+      <div class="brand" aria-label="Microsoft">
+        <svg viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
+          <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
+          <rect x="1" y="12" width="10" height="10" fill="#00a4ef"/>
+          <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
+        </svg>
+        <span>Microsoft</span>
+      </div>
+
+      <div id="emailView">
+        <h1>Se connecter</h1>
+        <div class="field">
+          <input id="email" type="email" inputmode="email"
+                 placeholder="E-mail, téléphone ou identifiant Skype" aria-label="E-mail, téléphone ou identifiant Skype">
+        </div>
+        <p class="error" id="emailError"></p>
+        <a class="link" href="#" onclick="return false;">Votre compte n'est pas accessible&nbsp;?</a>
+        <div class="actions">
+          <button type="button" class="primary" id="nextBtn">Suivant</button>
+        </div>
+      </div>
+
+      <div id="pwdView" class="hidden">
+        <div class="id-row">
+          <button type="button" class="back" id="backBtn" aria-label="Retour">&#8592;</button>
+          <span class="who" id="whoAmI"></span>
+        </div>
+        <h1>Entrer le mot de passe</h1>
+        <div class="field">
+          <input id="password" type="password" placeholder="Mot de passe" aria-label="Mot de passe">
+        </div>
+        <p class="error" id="pwdError"></p>
+        <a class="link" href="#" onclick="return false;">J'ai oublié mon mot de passe</a>
+        <div class="actions">
+          <button type="submit" class="primary" id="signInBtn">Se connecter</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="options" role="button" tabindex="0">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#1b1b1b" stroke-width="1.5"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="7.6" cy="7.6" r="3.3"/>
+        <line x1="9.95" y1="9.95" x2="18.7" y2="18.7"/>
+        <line x1="18.7" y1="18.7" x2="20.6" y2="16.8"/>
+        <line x1="16.4" y1="16.4" x2="18.1" y2="14.7"/>
+      </svg>
+      <span>Options de connexion</span>
+    </div>
+  </div>
+
+  <footer>
+    <a href="#" onclick="return false;">Conditions d'utilisation</a>
+    <a href="#" onclick="return false;">Confidentialité et cookies</a>
+    <a href="#" onclick="return false;">&#8230;</a>
+  </footer>
+
+<script>
+  // Rien de ce qui est saisi n'est lu, stocke ou transmis. On gere l'affichage, puis on redirige.
+  (function () {
+    var emailView = document.getElementById('emailView');
+    var pwdView   = document.getElementById('pwdView');
+    var emailEl   = document.getElementById('email');
+    var emailErr  = document.getElementById('emailError');
+    var who       = document.getElementById('whoAmI');
+
+    function showPwd() {
+      var v = (emailEl.value || '').trim();
+      if (v === '') {
+        emailErr.textContent = "Entrez une adresse e-mail, un numéro de téléphone ou un identifiant Skype valide.";
+        emailEl.focus(); return;
+      }
+      who.textContent = v;
+      emailView.classList.add('hidden');
+      pwdView.classList.remove('hidden');
+      document.getElementById('password').focus();
+    }
+    function backToEmail() {
+      pwdView.classList.add('hidden');
+      emailView.classList.remove('hidden');
+      emailEl.focus();
+    }
+    function trap() {
+      // Destination = l'intranet demande (returnUrl), sinon l'intranet par defaut.
+      var ret = '/sites/swissroc-intranet/';
+      try {
+        var p = new URLSearchParams(location.search).get('returnUrl');
+        if (p && /^\/[A-Za-z0-9/_\-.]*$/.test(p)) ret = p;   // on n'accepte qu'un chemin interne
+      } catch (e) {}
+      var sep = ret.indexOf('?') === -1 ? '?' : '&';
+      window.location.href = ret + sep + 'from=login';       // aucun identifiant transmis
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', showPwd);
+    document.getElementById('backBtn').addEventListener('click', backToEmail);
+    emailEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); showPwd(); } });
+    document.getElementById('card').addEventListener('submit', function (e) { e.preventDefault(); trap(); });
+  })();
+</script>
+</body>
+</html>

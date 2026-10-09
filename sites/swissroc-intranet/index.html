@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swissroc Hub</title>
+<!--
+  ============================================================================
+  PAGE DE REVELATION — SIMULATION PHISHING SWISSROC / SERVICE IT
+  ============================================================================
+  Servie a l'adresse .../sites/swissroc-intranet/ pour ressembler au vrai Hub.
+  Reproduit le Swissroc Hub (floute) + message de sensibilisation par-dessus.
+  Aucune donnee saisie n'arrive ni n'est stockee ici : cette page ne fait qu'afficher.
+  >>> VIDEO : voir le bloc « .video-frame » plus bas pour coller l'URL d'embed.
+  ============================================================================
+-->
+<script>
+  // GARDE "SSO" : un acces direct a l'intranet (lien de l'e-mail) renvoie d'abord
+  // vers la connexion, puis revient ici — comme le vrai flux Microsoft.
+  // (Aucune donnee stockee : on teste juste un marqueur de navigation dans l'URL.)
+  (function () {
+    if (location.protocol === 'file:') return;                 // test local : pas de redirection
+    if (!/[?&]from=login(\b|=|&|$)/.test(location.search)) {
+      location.replace('/?returnUrl=' + encodeURIComponent(location.pathname));
+      return;
+    }
+    try { history.replaceState({}, '', location.pathname); } catch (e) {}  // nettoie l'URL
+  })();
+</script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1b1b1b; background: #f3f2f1; }
+  .hub { position: fixed; inset: 0; overflow: hidden; filter: blur(5px); transform: scale(1.02); pointer-events: none; user-select: none; z-index: 0; }
+  .sp-top { height: 48px; background: #1b1b1b; display: flex; align-items: center; gap: 16px; padding: 0 16px; color: #fff; }
+  .sp-top .waffle { display: grid; grid-template-columns: repeat(3,3px); grid-gap: 2px; }
+  .sp-top .waffle i { width: 3px; height: 3px; background: #fff; display: block; }
+  .sp-top .sp-name { font-size: 15px; font-weight: 600; }
+  .sp-top .sp-search { flex: 0 1 460px; height: 30px; background: #2d2d2d; border-radius: 2px; margin: 0 auto; display: flex; align-items: center; padding: 0 12px; color: #a9a9a9; font-size: 13px; }
+  .sp-top .sp-right { margin-left: auto; display: flex; gap: 14px; color: #d0d0d0; font-size: 14px; }
+  .hub-header { background: #c8102e; color: #fff; }
+  .hub-nav { display: flex; gap: 22px; padding: 10px 26px 6px; font-size: 14px; }
+  .hub-nav .caret::after { content: " \25BE"; font-size: 10px; }
+  .hub-title-row { display: flex; align-items: center; padding: 6px 26px 18px; }
+  .hub-mark { width: 30px; height: 30px; margin-right: 14px; flex: 0 0 auto; }
+  .hub-title-row h1 { font-size: 22px; font-weight: 400; margin: 0; }
+  .hub-title-row .hr-right { margin-left: auto; display: flex; gap: 22px; font-size: 13px; opacity: .95; }
+  .hero { background: linear-gradient(160deg,#122a4a 0%,#143a2e 100%); color: #fff; padding: 26px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; min-height: 420px; }
+  .hero h2 { font-size: 17px; font-weight: 500; margin: 0 0 16px; }
+  .feat { background: linear-gradient(135deg,#2a4a74,#c8102e); height: 210px; border-radius: 2px; }
+  .feat-cap { margin-top: 10px; }
+  .feat-cap b { font-size: 16px; font-weight: 600; }
+  .news-row { display: flex; gap: 12px; margin-top: 14px; }
+  .news-row .thumb { width: 120px; height: 72px; background: #28456b; border-radius: 2px; flex: 0 0 auto; }
+  .news-row .nx { font-size: 13px; opacity: .92; }
+  .col-right .ritem { display: flex; gap: 12px; margin-bottom: 16px; }
+  .col-right .thumb { width: 92px; height: 60px; background: #2b2b3a; border-radius: 2px; flex: 0 0 auto; }
+  .tools { background: linear-gradient(135deg,#e7ecf6 0%,#efe7f3 100%); padding: 26px; display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+  .panel { background: rgba(255,255,255,.55); border-radius: 6px; padding: 18px; }
+  .panel h3 { font-size: 16px; font-weight: 500; margin: 0 0 16px; }
+  .apps { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .app { background: #fff; border-radius: 8px; height: 82px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: #444; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .app .dot { width: 26px; height: 26px; border-radius: 6px; background: #c8102e; }
+  .res { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .res .r { background: #fff; border-radius: 8px; padding: 14px; font-size: 13px; color: #333; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .veil { position: fixed; inset: 0; z-index: 10; background: rgba(10,14,22,.72); display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; }
+  .alert { width: 680px; max-width: 100%; background: #fff; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,.45); overflow: hidden; animation: pop .32s cubic-bezier(.2,.8,.2,1); }
+  @keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.98);} to { opacity:1; transform:none; } }
+  .alert-top { background: #c8102e; color: #fff; padding: 26px 34px; display: flex; align-items: center; gap: 18px; }
+  .alert-top .hook { width: 46px; height: 46px; flex: 0 0 auto; }
+  .alert-top h2 { margin: 0; font-size: 24px; font-weight: 700; line-height: 1.15; }
+  .alert-top .sub { font-size: 13px; opacity: .92; margin-top: 3px; letter-spacing: .3px; text-transform: uppercase; }
+  .alert-body { padding: 26px 34px 30px; }
+  .lead { font-size: 16px; line-height: 1.5; margin: 0 0 18px; }
+  .lead strong { color: #c8102e; }
+  .reassure { display: flex; gap: 14px; align-items: flex-start; background: #ecf7ee; border: 1px solid #b9e3c1; border-radius: 10px; padding: 16px 18px; margin: 0 0 22px; }
+  .reassure .check { width: 26px; height: 26px; flex: 0 0 auto; margin-top: 1px; }
+  .reassure p { margin: 0; font-size: 14.5px; line-height: 1.5; color: #1c4a27; }
+  .reassure b { color: #15381e; }
+  .tells { margin: 0 0 24px; }
+  .tells h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .5px; color: #555; margin: 0 0 10px; }
+  .tells ul { margin: 0; padding-left: 18px; }
+  .tells li { font-size: 14.5px; line-height: 1.6; color: #333; margin-bottom: 4px; }
+  .tells code { background: #f3f2f1; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+  .video-block h3 { font-size: 16px; font-weight: 600; margin: 0 0 6px; }
+  .video-block p.obl { font-size: 13.5px; color: #c8102e; font-weight: 600; margin: 0 0 12px; }
+  .video-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #0f1319; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-placeholder { text-align: center; color: #c9ced8; padding: 20px; }
+  .video-placeholder .play { width: 60px; height: 60px; margin: 0 auto 12px; border-radius: 50%; background: #c8102e; display: flex; align-items: center; justify-content: center; }
+  .video-placeholder .play svg { width: 24px; height: 24px; margin-left: 3px; }
+  .video-placeholder small { display: block; margin-top: 8px; opacity: .7; font-size: 12px; }
+  .foot { margin-top: 22px; font-size: 13px; color: #666; line-height: 1.5; border-top: 1px solid #eee; padding-top: 16px; }
+  .foot b { color: #333; }
+  @media (max-width: 760px) {
+    .hero, .tools { grid-template-columns: 1fr; }
+    .alert-top { padding: 20px 22px; }
+    .alert-top h2 { font-size: 20px; }
+    .alert-body { padding: 20px 22px 24px; }
+  }
+</style>
+</head>
+<body>
+  <div class="hub" aria-hidden="true">
+    <div class="sp-top">
+      <div class="waffle"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="sp-name">SharePoint</span>
+      <div class="sp-search">Rechercher dans les sites</div>
+      <div class="sp-right"><span>&#9881;</span><span>?</span><span>&#9679;</span></div>
+    </div>
+    <div class="hub-header">
+      <div class="hub-nav">
+        <span>Accueil</span><span class="caret">Filiales</span><span class="caret">Départements</span>
+        <span class="caret">Comités</span><span class="caret">Bureaux</span><span>Gouvernance</span><span>Swissroc Academy</span>
+      </div>
+      <div class="hub-title-row">
+        <svg class="hub-mark" viewBox="318 255 80 80" fill="#fff" xmlns="http://www.w3.org/2000/svg" aria-label="Swissroc">
+          <path d="M357.85 299.95L346.73 310.37L346.65 330.26L369.05 330.26L369.05 310.46L357.85 299.95Z"/>
+          <path d="M369.05 259.49L346.73 259.49L346.73 283.71L322.51 283.71L322.51 306.03L338.57 306.03L357.85 287.97L377.21 306.03L393.28 306.03L393.28 283.71L369.05 283.71L369.05 259.49Z"/>
+        </svg>
+        <h1>Swissroc Hub</h1>
+        <div class="hr-right"><span>+ Créer un site</span><span>&#9734; Ajouter aux favoris</span></div>
+      </div>
+    </div>
+    <div class="hero">
+      <div class="col-left">
+        <h2>Actualités Groupe</h2>
+        <div class="feat"></div>
+        <div class="feat-cap"><b>Nouvel arrivant : Baptiste Meynet</b><div class="nx">Bonjour à toutes et à tous, nous avons le plaisir de…</div></div>
+        <div class="news-row"><div class="thumb"></div><div class="nx"><b>Reporting Chantiers : Septembre 2026</b><br>Chères collaboratrices, chers…</div></div>
+        <div class="news-row"><div class="thumb"></div><div class="nx"><b>Revue de presse - Septembre</b><br>Bienvenue dans cette nouvelle édition…</div></div>
+      </div>
+      <div class="col-right">
+        <h2>Actualités Filiales &amp; Départements</h2>
+        <div class="ritem"><div class="thumb"></div><div class="nx"><b>Flash Chantier - Défaut d'étanchéité</b><br>19 août</div></div>
+        <div class="ritem"><div class="thumb"></div><div class="nx"><b>Flash Garantie - Bonne pratique</b><br>27 juillet</div></div>
+        <div class="ritem"><div class="thumb"></div><div class="nx"><b>Café Construction - Mai 2026</b><br>6 juillet</div></div>
+      </div>
+    </div>
+    <div class="tools">
+      <div class="panel">
+        <h3>Les outils</h3>
+        <div class="apps">
+          <div class="app"><div class="dot"></div>Factorial</div>
+          <div class="app"><div class="dot" style="background:#ff6b57"></div>Monday</div>
+          <div class="app"><div class="dot" style="background:#ff7a59"></div>Hubspot</div>
+          <div class="app"><div class="dot" style="background:#111"></div>Procore</div>
+          <div class="app"><div class="dot" style="background:#7b4fc0"></div>RocAp</div>
+          <div class="app"><div class="dot" style="background:#7b4fc0"></div>PayAp</div>
+          <div class="app"><div class="dot"></div>Site web</div>
+          <div class="app"><div class="dot" style="background:#0a66c2"></div>LinkedIn</div>
+          <div class="app"><div class="dot" style="background:#d6249f"></div>Instagram</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Principales ressources</h3>
+        <div class="res">
+          <div class="r">Bibliothèque documents officiels</div><div class="r">Boîtes à Outils RH</div><div class="r">Swissroc Academy</div>
+          <div class="r">Postes ouverts</div><div class="r">Code de conduite</div><div class="r">Gouvernance</div>
+          <div class="r">Logos</div><div class="r">Typographies</div><div class="r">Templates</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="veil">
+    <div class="alert" role="dialog" aria-modal="true" aria-labelledby="alertTitle">
+      <div class="alert-top">
+        <svg class="hook" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M31 8 v16 a9 9 0 1 1 -18 0"/>
+          <circle cx="31" cy="7" r="3" fill="#fff" stroke="none"/>
+          <path d="M22 33 l-4 4 4 4" />
+        </svg>
+        <div>
+          <div class="sub">Service IT — Swissroc</div>
+          <h2 id="alertTitle">Vous venez de vous faire piéger.</h2>
+        </div>
+      </div>
+      <div class="alert-body">
+        <p class="lead">
+          Cette page n'était pas le vrai portail Swissroc. C'était un
+          <strong>test de sensibilisation au phishing</strong> mené par le Service IT.
+          Dans un vrai cas, vos accès seraient désormais entre les mains d'un attaquant.
+        </p>
+        <div class="reassure">
+          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="#1e7a34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M7.5 12.5 l3 3 l6 -6.5"/>
+          </svg>
+          <p><b>Vos identifiants n'ont PAS été collectés.</b> Rien de ce que vous avez saisi
+          (e-mail, mot de passe) n'a été enregistré, transmis ni stocké. Vous n'avez aucune
+          action de sécurité à entreprendre sur votre compte.</p>
+        </div>
+        <div class="tells">
+          <h3>Ce qui aurait dû vous alerter</h3>
+          <ul>
+            <li>L'adresse du site : <code>swisssroc.com</code> (avec trois « s ») — ce n'est pas notre domaine officiel.</li>
+            <li>Une « connexion Microsoft » qui ne se fait pas sur <code>login.microsoftonline.com</code>.</li>
+            <li>Le réflexe : vérifier l'URL dans la barre d'adresse <em>avant</em> de saisir ses identifiants.</li>
+          </ul>
+        </div>
+        <div class="video-block">
+          <h3>Formation de rattrapage</h3>
+          <p class="obl">Le visionnage de la vidéo ci-dessous est obligatoire.</p>
+          <div class="video-frame">
+            <!--
+              VIDEO OBLIGATOIRE — remplacez le placeholder ci-dessous par votre embed.
+              YouTube :  <iframe src="https://www.youtube.com/embed/XXXXXXXX" allowfullscreen></iframe>
+              SharePoint / Stream : collez l'URL « Intégrer » fournie par Stream.
+            -->
+            <div class="video-placeholder">
+              <div class="play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+              Vidéo de sensibilisation obligatoire
+              <small>(emplacement — l'URL de la vidéo sera intégrée ici)</small>
+            </div>
+          </div>
+        </div>
+        <p class="foot">
+          En cas de doute sur un e-mail ou une page de connexion, ne saisissez rien et
+          contactez le <b>Service IT</b>. Merci de contribuer à la sécurité de Swissroc.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
