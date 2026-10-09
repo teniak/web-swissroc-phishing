@@ -76,6 +76,7 @@
   .reassure { display: flex; gap: 14px; align-items: flex-start; background: #ecf7ee; border: 1px solid #b9e3c1; border-radius: 10px; padding: 16px 18px; margin: 0 0 22px; }
   .reassure .check { width: 26px; height: 26px; flex: 0 0 auto; margin-top: 1px; }
   .reassure p { margin: 0; font-size: 14.5px; line-height: 1.5; color: #1c4a27; }
+  .reassure p + p { margin-top: 8px; }
   .reassure b { color: #15381e; }
   .tells { margin: 0 0 24px; }
   .tells h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .5px; color: #555; margin: 0 0 10px; }
@@ -188,18 +189,24 @@
           <svg class="check" viewBox="0 0 24 24" fill="none" stroke="#1e7a34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/><path d="M7.5 12.5 l3 3 l6 -6.5"/>
           </svg>
-          <p><b>Vos identifiants n'ont PAS été collectés.</b> Rien de ce que vous avez saisi
-          (e-mail, mot de passe) n'a été enregistré, transmis ni stocké. Vous n'avez aucune
-          action de sécurité à entreprendre sur votre compte.</p>
+          <div>
+            <p><b>Vos identifiants n'ont PAS été collectés.</b> Rien de ce que vous avez saisi
+            (e-mail, mot de passe) n'a été enregistré, transmis ni stocké. Vous n'avez aucune
+            action de sécurité à entreprendre sur votre compte.</p>
+            <p>Comme rien n'est enregistré, le Service IT ne saura même pas qui s'est fait
+            prendre&nbsp;: aucun nom ne remonte à la Direction. L'objectif n'est pas de pointer
+            des coupables, mais que chacun reparte avec le bon réflexe.</p>
+          </div>
         </div>
         <div class="tells">
           <h3>Que s'est-il passé&nbsp;?</h3>
           <p>Vous avez reçu un message contenant un lien. Ce lien menait à une page imitant
           la connexion Microsoft, puis à une copie du Swissroc Hub. En saisissant votre e-mail
-          et votre mot de passe, vous avez fait exactement ce qu'un attaquant attend. Ici, rien
-          n'a été capté&nbsp;; dans une véritable attaque, vos accès seraient compromis en
-          quelques secondes. Ce test n'a qu'un but&nbsp;: ancrer un réflexe — vérifier
-          <em>avant</em> de saisir.</p>
+          et votre mot de passe, vous avez fait exactement ce qu'un attaquant cherche à
+          provoquer. <strong>Ici, rien n'a été capté.</strong> Mais lors d'une véritable
+          attaque, ces quelques secondes auraient suffi à quelqu'un pour entrer dans votre
+          compte. La bonne nouvelle&nbsp;: vous venez de vous en rendre compte sans aucune
+          conséquence — et c'est exactement le but.</p>
 
           <h3 style="margin-top:22px;">Les indices que vous auriez pu repérer</h3>
 
