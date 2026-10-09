@@ -79,9 +79,12 @@
   .reassure b { color: #15381e; }
   .tells { margin: 0 0 24px; }
   .tells h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .5px; color: #555; margin: 0 0 10px; }
-  .tells ul { margin: 0; padding-left: 18px; }
-  .tells li { font-size: 14.5px; line-height: 1.6; color: #333; margin-bottom: 4px; }
+  .tells h4 { font-size: 13px; color: #c8102e; font-weight: 700; margin: 16px 0 6px; }
+  .tells p { font-size: 14.5px; line-height: 1.55; color: #333; margin: 0 0 8px; }
+  .tells ul { margin: 0 0 4px; padding-left: 18px; }
+  .tells li { font-size: 14.5px; line-height: 1.6; color: #333; margin-bottom: 5px; }
   .tells code { background: #f3f2f1; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+  .tells strong { color: #1b1b1b; }
   .video-block h3 { font-size: 16px; font-weight: 600; margin: 0 0 6px; }
   .video-block p.obl { font-size: 13.5px; color: #c8102e; font-weight: 600; margin: 0 0 12px; }
   .video-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #0f1319; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
@@ -190,11 +193,44 @@
           action de sécurité à entreprendre sur votre compte.</p>
         </div>
         <div class="tells">
-          <h3>Ce qui aurait dû vous alerter</h3>
+          <h3>Que s'est-il passé&nbsp;?</h3>
+          <p>Vous avez reçu un message contenant un lien. Ce lien menait à une page imitant
+          la connexion Microsoft, puis à une copie du Swissroc Hub. En saisissant votre e-mail
+          et votre mot de passe, vous avez fait exactement ce qu'un attaquant attend. Ici, rien
+          n'a été capté&nbsp;; dans une véritable attaque, vos accès seraient compromis en
+          quelques secondes. Ce test n'a qu'un but&nbsp;: ancrer un réflexe — vérifier
+          <em>avant</em> de saisir.</p>
+
+          <h3 style="margin-top:22px;">Les indices que vous auriez pu repérer</h3>
+
+          <h4>Dans la barre d'adresse (le signe le plus fiable)</h4>
           <ul>
-            <li>L'adresse du site : <code>swisssroc.com</code> (avec trois « s ») — ce n'est pas notre domaine officiel.</li>
-            <li>Une « connexion Microsoft » qui ne se fait pas sur <code>login.microsoftonline.com</code>.</li>
-            <li>Le réflexe : vérifier l'URL dans la barre d'adresse <em>avant</em> de saisir ses identifiants.</li>
+            <li><code>swisssroc.com</code> — trois «&nbsp;s&nbsp;» au lieu de deux. Un caractère glissé dans le nom de domaine&nbsp;: c'est du <em>typosquatting</em>, la technique reine du phishing.</li>
+            <li>La «&nbsp;connexion Microsoft&nbsp;» ne se faisait <strong>pas</strong> sur <code>login.microsoftonline.com</code>. Une authentification Microsoft&nbsp;365 légitime passe <strong>toujours</strong> par ce domaine — jamais un autre.</li>
+            <li>Le faux intranet s'affichait sur <code>sharepoint.swisssroc.com</code>. Le vrai SharePoint de Swissroc est sur <code>swissrocswiss.sharepoint.com</code>&nbsp;: un espace Microsoft est toujours en <code>*.sharepoint.com</code>, jamais sur un domaine maison.</li>
+          </ul>
+
+          <h4>Sur la page elle-même</h4>
+          <ul>
+            <li>La petite <strong>clé</strong> «&nbsp;Options de connexion&nbsp;» n'était pas le symbole exact de Microsoft&nbsp;: un dessin approximatif.</li>
+            <li>Le <strong>fond d'écran</strong> de la page de connexion ne correspondait pas à l'arrière-plan réel de Microsoft (un dégradé générique au lieu de l'illustration habituelle).</li>
+            <li>Les liens de bas de page («&nbsp;Conditions d'utilisation&nbsp;», «&nbsp;Confidentialité et cookies&nbsp;») ne menaient nulle part.</li>
+            <li>Les liens «&nbsp;Votre compte n'est pas accessible&nbsp;?&nbsp;» et «&nbsp;J'ai oublié mon mot de passe&nbsp;» étaient inactifs.</li>
+            <li>Le parcours était trop lisse&nbsp;: aucune validation MFA, et aucune charte Swissroc affichée après la saisie de l'e-mail, alors que le vrai portail reprend la marque de l'entreprise.</li>
+          </ul>
+
+          <h4>Dans le message reçu</h4>
+          <ul>
+            <li>Une demande de reconnexion <strong>inattendue</strong>, souvent teintée d'urgence («&nbsp;votre session a expiré&nbsp;», «&nbsp;action requise&nbsp;»).</li>
+          </ul>
+
+          <h3 style="margin-top:22px;">Les bons réflexes</h3>
+          <ul>
+            <li>Vérifier l'URL dans la barre d'adresse <strong>avant</strong> de saisir le moindre identifiant.</li>
+            <li>Retenir qu'une connexion Microsoft&nbsp;365 se fait toujours sur <code>login.microsoftonline.com</code>.</li>
+            <li>Survoler un lien pour lire sa vraie destination avant de cliquer.</li>
+            <li>Se méfier de toute demande de reconnexion inattendue ou urgente.</li>
+            <li>Dans le doute&nbsp;: ne rien saisir et signaler au Service IT.</li>
           </ul>
         </div>
         <div class="video-block">
