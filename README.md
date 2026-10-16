@@ -29,12 +29,7 @@ Flux reproduisant un vrai SSO Microsoft :
 1. Le lien de l'e-mail pointe vers `…/sites/swissroc-intranet/`.
 2. Accès « non authentifié » → redirection vers `/` (connexion).
 3. Saisie puis « Se connecter » → retour sur `…/sites/swissroc-intranet/?from=login`.
-4. La page nettoie l'URL et affiche la révélation + la vidéo obligatoire.
-
-## Vidéo obligatoire
-
-Dans `sites/swissroc-intranet/index.html`, bloc `.video-frame` : remplacer le
-placeholder par l'`<iframe>` d'embed (YouTube ou SharePoint Stream).
+4. La page nettoie l'URL et affiche la révélation.
 
 ## Hébergement
 
